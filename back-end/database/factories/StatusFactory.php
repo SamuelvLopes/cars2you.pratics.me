@@ -12,7 +12,8 @@ class StatusFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->randomElement(['Active', 'Inactive']), // Status fictício
-        ];
+            'name' => $this->faker->word
+            //'name' => $this->faker->randomElement(['Active', 'Inactive']),
+        ] ;
     }
 }

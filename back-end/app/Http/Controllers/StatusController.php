@@ -8,42 +8,91 @@ use Illuminate\Http\Request;
 class StatusController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Lista todos os registros de status com paginação.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        // Define o número de itens por página (padrão 10)
+        $perPage = $request->query('per_page', 10);
+
+        // Retorna todos os status com paginação
+        $statuses = Status::paginate($perPage);
+
+        return response()->json($statuses, 200);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Cria um novo registro de status.
      */
     public function store(Request $request)
     {
-        //
+        // Validação dos dados de entrada
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        // Cria um novo registro de status
+        $status = Status::create($validatedData);
+
+        return response()->json($status, 201);
     }
 
     /**
-     * Display the specified resource.
+     * Exibe um registro de status específico pelo ID.
      */
-    public function show(Status $status)
+    public function show($id)
     {
-        //
+        // Busca o status pelo ID
+        $status = Status::find($id);
+
+        // Verifica se o status foi encontrado
+        if (!$status) {
+            return response()->json(['message' => 'Status not found'], 404);
+        }
+
+        return response()->json($status, 200);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Atualiza um registro de status específico pelo ID.
      */
-    public function update(Request $request, Status $status)
+    public function update(Request $request, $id)
     {
-        //
+        // Validação dos dados de entrada
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        // Busca o status pelo ID
+        $status = Status::find($id);
+
+        // Verifica se o status foi encontrado
+        if (!$status) {
+            return response()->json(['message' => 'Status not found'], 404);
+        }
+
+        // Atualiza os dados do status
+        $status->update($validatedData);
+
+        return response()->json($status, 200);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Deleta um registro de status específico pelo ID.
      */
-    public function destroy(Status $status)
+    public function destroy($id)
     {
-        //
+        // Busca o status pelo ID
+        $status = Status::find($id);
+
+        // Verifica se o status foi encontrado
+        if (!$status) {
+            return response()->json(['message' => 'Status not found'], 404);
+        }
+
+        // Deleta o status
+        $status->delete();
+
+        return response()->json(['message' => 'Status deleted'], 200);
     }
 }

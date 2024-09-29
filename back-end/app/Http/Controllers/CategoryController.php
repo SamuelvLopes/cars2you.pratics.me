@@ -8,42 +8,91 @@ use Illuminate\Http\Request;
 class CategoryController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * Lista todas as categorias com paginação.
      */
-    public function index()
+    public function index(Request $request)
     {
-        //
+        // Define o número de itens por página (padrão 10)
+        $perPage = $request->query('per_page', 10);
+
+        // Retorna todas as categorias com paginação
+        $categories = Category::paginate($perPage);
+
+        return response()->json($categories, 200);
     }
 
     /**
-     * Store a newly created resource in storage.
+     * Cria uma nova categoria.
      */
     public function store(Request $request)
     {
-        //
+        // Validação dos dados de entrada
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        // Cria uma nova categoria
+        $category = Category::create($validatedData);
+
+        return response()->json($category, 201);
     }
 
     /**
-     * Display the specified resource.
+     * Exibe uma categoria específica pelo ID.
      */
-    public function show(Category $category)
+    public function show($id)
     {
-        //
+        // Busca a categoria pelo ID
+        $category = Category::find($id);
+
+        // Verifica se a categoria foi encontrada
+        if (!$category) {
+            return response()->json(['message' => 'Category not found'], 404);
+        }
+
+        return response()->json($category, 200);
     }
 
     /**
-     * Update the specified resource in storage.
+     * Atualiza uma categoria específica pelo ID.
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request, $id)
     {
-        //
+        // Validação dos dados de entrada
+        $validatedData = $request->validate([
+            'name' => 'required|string|max:255',
+        ]);
+
+        // Busca a categoria pelo ID
+        $category = Category::find($id);
+
+        // Verifica se a categoria foi encontrada
+        if (!$category) {
+            return response()->json(['message' => 'Category not found'], 404);
+        }
+
+        // Atualiza os dados da categoria
+        $category->update($validatedData);
+
+        return response()->json($category, 200);
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Deleta uma categoria específica pelo ID.
      */
-    public function destroy(Category $category)
+    public function destroy($id)
     {
-        //
+        // Busca a categoria pelo ID
+        $category = Category::find($id);
+
+        // Verifica se a categoria foi encontrada
+        if (!$category) {
+            return response()->json(['message' => 'Category not found'], 404);
+        }
+
+        // Deleta a categoria
+        $category->delete();
+
+        return response()->json(['message' => 'Category deleted'], 200);
     }
 }

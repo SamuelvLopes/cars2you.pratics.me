@@ -9,6 +9,6 @@ class StatusSeeder extends Seeder
 {
     public function run()
     {
-        Status::factory(3)->create();
+        Status::factory(10)->create();
     }
 }
