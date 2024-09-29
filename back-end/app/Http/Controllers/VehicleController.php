@@ -15,8 +15,8 @@ class VehicleController extends Controller
         // Define o número de itens por página (padrão 10)
         $perPage = $request->query('per_page', 10);
 
-        // Retorna todos os veículos com paginação
-        $vehicles = Vehicle::paginate($perPage);
+        // Retorna todos os veículos com paginação e inclui os relacionamentos
+        $vehicles = Vehicle::with(['brand', 'category', 'model', 'status'])->paginate($perPage);
 
         return response()->json($vehicles, 200);
     }
@@ -39,6 +39,9 @@ class VehicleController extends Controller
         // Cria um novo veículo
         $vehicle = Vehicle::create($validatedData);
 
+        // Retorna o veículo recém-criado com os relacionamentos
+        $vehicle->load(['brand', 'category', 'model', 'status']);
+
         return response()->json($vehicle, 201);
     }
 
@@ -47,8 +50,8 @@ class VehicleController extends Controller
      */
     public function show($id)
     {
-        // Busca o veículo pelo ID
-        $vehicle = Vehicle::find($id);
+        // Busca o veículo pelo ID e inclui os relacionamentos
+        $vehicle = Vehicle::with(['brand', 'category', 'model', 'status'])->find($id);
 
         // Verifica se o veículo foi encontrado
         if (!$vehicle) {
@@ -83,6 +86,9 @@ class VehicleController extends Controller
 
         // Atualiza os dados do veículo
         $vehicle->update($validatedData);
+
+        // Retorna o veículo atualizado com os relacionamentos
+        $vehicle->load(['brand', 'category', 'model', 'status']);
 
         return response()->json($vehicle, 200);
     }
