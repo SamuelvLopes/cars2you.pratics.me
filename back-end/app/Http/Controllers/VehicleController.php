@@ -41,7 +41,7 @@ class VehicleController extends Controller
         $vehicle = Vehicle::create($validatedData);
 
         // Retorna o veículo recém-criado com os relacionamentos
-        $vehicle->load(['brand', 'category', 'model', 'status', 'colors']);
+        $vehicle->load(['brand', 'category', 'model', 'status', 'color']);
 
         return response()->json($vehicle, 201);
     }
@@ -90,7 +90,7 @@ class VehicleController extends Controller
         $vehicle->update($validatedData);
 
         // Retorna o veículo atualizado com os relacionamentos
-        $vehicle->load(['brand', 'category', 'model', 'status', 'colors']);
+        $vehicle->load(['brand', 'category', 'model', 'status', 'color']);
 
         return response()->json($vehicle, 200);
     }
