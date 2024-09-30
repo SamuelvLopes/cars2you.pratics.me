@@ -1,153 +1,134 @@
 
-# Cars2You Pratics
+# Cars2You - Sistema de Gerenciamento de Veículos
 
-Este projeto consiste em um sistema de gerenciamento de veículos, contendo tanto o backend quanto o frontend. O backend foi desenvolvido com Laravel, e o frontend com Nuxt.js (Vue 3). 
-
-Repositório do projeto: [https://github.com/SamuelvLopes/cars2you.pratics.me](https://github.com/SamuelvLopes/cars2you.pratics.me)
+Este projeto consiste em um sistema completo para gerenciamento de veículos, incluindo backend em Laravel e frontend em Vue.js, utilizando Vite para o desenvolvimento rápido e eficiente.
 
 ## Índice
 
 - [Tecnologias Utilizadas](#tecnologias-utilizadas)
 - [Estrutura de Pastas](#estrutura-de-pastas)
-- [Backend - Laravel](#backend---laravel)
-  - [Instalação](#instalação-do-backend)
-  - [Configuração](#configuração-do-backend)
-  - [Uso](#uso-do-backend)
-- [Frontend - Nuxt.js](#frontend---nuxtjs)
-  - [Instalação](#instalação-do-frontend)
-  - [Configuração](#configuração-do-frontend)
-  - [Uso](#uso-do-frontend)
+- [Instalação](#instalação)
+  - [Backend](#backend)
+  - [Frontend](#frontend)
+- [Configuração](#configuração)
+- [Uso](#uso)
 - [Contribuição](#contribuição)
 - [Licença](#licença)
 
 ## Tecnologias Utilizadas
 
-- **Backend:**
-  - Laravel 9
-  - Docker (Laravel Sail)
-- **Frontend:**
-  - Nuxt.js 3
-  - Vue.js 3
-  - Bulma (CSS Framework)
-  - Pinia (State Management)
-  - Vite (Build Tool)
+### Backend
+- PHP (Laravel)
+- MySQL
+- Sail (Docker)
+
+### Frontend
+- Vue 3
+- Vite
+- Axios
+- Bulma (CSS Framework)
 
 ## Estrutura de Pastas
 
 ```bash
-cars2you.pratics.me
-├── back-end
-│   ├── app
+cars2you.pratics.me/
+├── back-end/
+│   ├── app/
+│   ├── config/
+│   ├── database/
+│   ├── public/
+│   ├── routes/
+│   ├── tests/
+│   ├── .env.example
+│   ├── docker-compose.yml
 │   ├── artisan
 │   ├── composer.json
-│   ├── docker-compose.yml
-│   ├── .env.example
-│   ├── package.json
-│   ├── README.md
-│   ├── tests
 │   └── ...
-├── docs
-├── front-end
-│   ├── dist
-│   ├── node_modules
-│   ├── public
-│   ├── src
-│   │   ├── app
-│   │   ├── views
-│   │   │   ├── components
-│   │   │   ├── pages
-│   │   │   │   ├── Home.vue
-│   │   │   │   └── VehicleForm.vue
+├── front-end/
+│   ├── public/
+│   ├── src/
+│   │   ├── app/
+│   │   ├── views/
+│   │   │   ├── components/
+│   │   │   └── pages/
+│   │   ├── assets/
 │   │   ├── App.vue
 │   │   ├── main.js
-│   ├── .env
+│   │   └── style.css
+│   ├── index.html
 │   ├── package.json
-│   ├── vite.config.js
-│   └── ...
-├── .env.sample
+│   └── vite.config.js
 └── README.md
 ```
 
-## Backend - Laravel
+## Instalação
 
-### Instalação do Backend
+### Backend
 
 1. Clone o repositório:
    ```bash
    git clone https://github.com/SamuelvLopes/cars2you.pratics.me.git
    ```
-2. Navegue até o diretório `back-end`:
+2. Navegue até o diretório do backend:
    ```bash
    cd cars2you.pratics.me/back-end
    ```
-3. Instale as dependências do Composer:
+3. Instale as dependências PHP:
    ```bash
    composer install
    ```
-
-### Configuração do Backend
-
-1. Crie o arquivo `.env` a partir do `.env.example`:
+4. Copie o arquivo `.env.example` para `.env` e configure as variáveis de ambiente:
    ```bash
    cp .env.example .env
    ```
-2. Gere a chave da aplicação:
-   ```bash
-   ./vendor/bin/sail artisan key:generate
-   ```
-3. Ajuste as configurações do banco de dados no arquivo `.env`.
-
-4. Inicie o ambiente Docker:
+5. Inicie o ambiente Docker com Laravel Sail:
    ```bash
    ./vendor/bin/sail up -d
    ```
-
-5. Rode as migrações para criar as tabelas no banco de dados:
+6. Gere a chave da aplicação e rode as migrações do banco de dados:
    ```bash
-   ./vendor/bin/sail artisan migrate
+   ./vendor/bin/sail artisan key:generate
+   ./vendor/bin/sail artisan migrate --seed
    ```
 
-6. Opcional: Rode os seeders para popular o banco de dados:
-   ```bash
-   ./vendor/bin/sail artisan db:seed
-   ```
+### Frontend
 
-### Uso do Backend
-
-Para iniciar o servidor, use:
-```bash
-./vendor/bin/sail artisan serve
-```
-
-## Frontend - Nuxt.js
-
-### Instalação do Frontend
-
-1. Navegue até o diretório `front-end`:
+1. Navegue até o diretório do frontend:
    ```bash
    cd cars2you.pratics.me/front-end
    ```
-2. Instale as dependências do NPM:
+2. Instale as dependências do Node.js:
    ```bash
    npm install
    ```
-
-### Configuração do Frontend
-
-1. Crie o arquivo `.env` para configurar a URL da API do backend:
-   ```
-   VITE_API_URL=http://localhost:8000/api
+3. Crie o arquivo `.env` e configure as variáveis de ambiente para apontar para o backend:
+   ```bash
+   cp .env.sample .env
    ```
 
-### Uso do Frontend
+## Configuração
 
-Para iniciar o servidor de desenvolvimento, use:
+No arquivo `.env` do frontend, adicione a URL da API para se comunicar com o backend:
+```
+VITE_API_URL=http://localhost:3000
+```
+
+## Uso
+
+### Backend
+Para iniciar o backend, execute o comando (no diretório `back-end`):
+```bash
+./vendor/bin/sail up
+```
+
+### Frontend
+Para iniciar o frontend, execute o comando (no diretório `front-end`):
 ```bash
 npm run dev
 ```
-
-O frontend estará disponível em `http://localhost:3000`.
+O frontend estará disponível em `http://localhost:5173`.
 
 ## Contribuição
 
 Contribuições são bem-vindas! Sinta-se à vontade para abrir uma issue ou enviar um pull request.
+

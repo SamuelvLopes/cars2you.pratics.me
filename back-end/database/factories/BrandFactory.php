@@ -12,7 +12,7 @@ class BrandFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->company, // Nome de marca fictício
+            'name' => $this->faker->company, 
         ];
     }
 }
