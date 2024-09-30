@@ -14,21 +14,21 @@ export const useVehiclesStore = defineStore('vehicles', {
     pagination: {
       currentPage: 1,
       lastPage: 1,
-    }, // Estado para paginação
+    }, 
   }),
 
   actions: {
-    // Buscar veículos com paginação
+   
     async fetchVehicles(page = 1) {
       try {
         const response = await getAllVehicles(page);
-        this.vehicles = response.data; // Atribuir a lista de veículos ao estado
-        this.pagination.currentPage = response.current_page; // Atribuir a página atual
-        this.pagination.lastPage = response.last_page; // Atribuir o total de páginas
-        return response; // Retorna os dados da API para serem usados no componente
+        this.vehicles = response.data; 
+        this.pagination.currentPage = response.current_page; 
+        this.pagination.lastPage = response.last_page; 
+        return response; 
       } catch (error) {
         console.error('Erro ao buscar veículos:', error);
-        throw error; // Lança o erro para que o componente possa lidar com ele
+        throw error; 
       }
     },
 
