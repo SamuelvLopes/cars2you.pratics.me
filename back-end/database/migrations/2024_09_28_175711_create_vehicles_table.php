@@ -16,6 +16,7 @@ class CreateVehiclesTable extends Migration
             $table->unsignedBigInteger('status_id')->nullable();
             $table->integer('manufacture_year');
             $table->float('weight', 8, 2);
+            $table->string('photo')->default('https://via.placeholder.com/150x150');
             $table->timestamps();
             $table->softDeletes();
             
