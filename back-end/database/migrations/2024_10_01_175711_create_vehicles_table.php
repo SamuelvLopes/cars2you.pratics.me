@@ -14,12 +14,12 @@ class CreateVehiclesTable extends Migration
             $table->unsignedBigInteger('category_id')->nullable();
             $table->unsignedBigInteger('model_id')->nullable();
             $table->unsignedBigInteger('status_id')->nullable();
+            $table->unsignedBigInteger('color_id')->nullable();
             $table->integer('manufacture_year');
             $table->float('weight', 8, 2);
             $table->string('photo')->default('https://via.placeholder.com/150x150');
             $table->timestamps();
             $table->softDeletes();
-            $table->unsignedBigInteger('color_id')->nullable();
 
             $table->foreign('color_id')->references('id')->on('colors')->onDelete('set null');
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('set null');
