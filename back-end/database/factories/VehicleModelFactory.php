@@ -12,7 +12,7 @@ class VehicleModelFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->word, // Nome do modelo de veículo fictício
+            'name' => $this->faker->word, 
         ];
     }
 }

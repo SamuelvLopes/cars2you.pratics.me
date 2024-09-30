@@ -1,4 +1,3 @@
-// stores/useCategoriesStore.js
 import { defineStore } from 'pinia';
 import { getAllCategories } from '../services/categories';
 

@@ -25,12 +25,11 @@ export default {
       model_id: null,
       weight: null,
       color_id: null,
-      status_id: 1, // Ativo por padrão
+      status_id: 1, 
     });
 
     const errors = ref({});
 
-    // Carregar as categorias
     categoriesStore.fetchCategories();
     modelsStore.fetchModels();
     brandsStore.fetchBrands();
@@ -42,7 +41,6 @@ export default {
     const brands = computed(() => brandsStore.brands);
     const colors = computed(() => colorsStore.colors);
 
-    // Carregar dados do veículo se estiver editando
     if (isEditing.value) {
       const vehicleId = route.params.id;
       vehiclesStore.fetchVehicleById(vehicleId).then((data) => {
@@ -50,7 +48,6 @@ export default {
       });
     }
 
-    // Validações
     const validateForm = () => {
       const validationErrors = {};
 
@@ -65,7 +62,6 @@ export default {
       return Object.keys(validationErrors).length === 0;
     };
 
-    // Submissão do formulário
     const submitForm = async () => {
       if (validateForm()) {
         if (isEditing.value) {
@@ -74,10 +70,9 @@ export default {
           await vehiclesStore.addNewVehicle(vehicle.value);
         }
         
-      // Limpar o estado do veículo selecionado após a submissão
         vehiclesStore.selectedVehicle = null;
 
-        router.push('/'); // Redireciona para a página inicial
+        router.push('/'); 
       } else {
         console.log('Erro de validação no formulário');
       }

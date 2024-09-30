@@ -3,7 +3,6 @@ import { env } from '../config/env';
 
 const baseUrl = `${env.apiUrl}/api/vehicles`;
 
-// Buscar todos os veículos com paginação
 export const getAllVehicles = async (page = 1) => {
   const request = await axios.get(`${baseUrl}?page=${page}`);
   return request.data; 
