@@ -15,6 +15,7 @@ class Vehicle extends Model
         'category_id', 
         'model_id', 
         'status_id', 
+        'color_id', 
         'manufacture_year', 
         'weight'
     ];
