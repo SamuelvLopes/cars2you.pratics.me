@@ -41,7 +41,7 @@ class VehicleController extends Controller
         $vehicle = Vehicle::create($validatedData);
 
         // Retorna o veículo recém-criado com os relacionamentos
-        $vehicle->load(['brand', 'category', 'model', 'status', 'color']);
+        $vehicle->load(['brand', 'category', 'model', 'status', 'colors']);
 
         return response()->json($vehicle, 201);
     }
@@ -52,7 +52,7 @@ class VehicleController extends Controller
     public function show($id)
     {
         // Busca o veículo pelo ID e inclui os relacionamentos
-        $vehicle = Vehicle::with(['brand', 'category', 'model', 'status', 'color'])->find($id);
+        $vehicle = Vehicle::with(['brand', 'category', 'model', 'status', 'colors'])->find($id);
 
         // Verifica se o veículo foi encontrado
         if (!$vehicle) {
@@ -90,7 +90,7 @@ class VehicleController extends Controller
         $vehicle->update($validatedData);
 
         // Retorna o veículo atualizado com os relacionamentos
-        $vehicle->load(['brand', 'category', 'model', 'status', 'color']);
+        $vehicle->load(['brand', 'category', 'model', 'status', 'colors']);
 
         return response()->json($vehicle, 200);
     }
