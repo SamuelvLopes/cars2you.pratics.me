@@ -52,7 +52,7 @@ class VehicleController extends Controller
     public function show($id)
     {
         // Busca o veículo pelo ID e inclui os relacionamentos
-        $vehicle = Vehicle::with(['brand', 'category', 'model', 'status', 'colors'])->find($id);
+        $vehicle = Vehicle::with(['brand', 'category', 'model', 'status', 'color'])->find($id);
 
         // Verifica se o veículo foi encontrado
         if (!$vehicle) {
