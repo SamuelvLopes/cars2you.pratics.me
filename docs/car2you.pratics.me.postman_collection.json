@@ -15,7 +15,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URI}}api/brands?page=1",
+							"raw": "{{URI}}api/brands?page=2",
 							"host": [
 								"{{URI}}api"
 							],
@@ -25,7 +25,7 @@
 							"query": [
 								{
 									"key": "page",
-									"value": "1"
+									"value": "2"
 								}
 							]
 						}
@@ -138,6 +138,145 @@
 							],
 							"path": [
 								"brands"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Cor",
+			"item": [
+				{
+					"name": "Listar Cores",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URI}}api/colors?page=2",
+							"host": [
+								"{{URI}}api"
+							],
+							"path": [
+								"colors"
+							],
+							"query": [
+								{
+									"key": "page",
+									"value": "2"
+								}
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Listar Cor",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{URI}}api/colors/2",
+							"host": [
+								"{{URI}}api"
+							],
+							"path": [
+								"colors",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Atualizar Cor",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Toyota afnsdkfsdknfafnsdkfsdknf\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URI}}api/colors/2",
+							"host": [
+								"{{URI}}api"
+							],
+							"path": [
+								"colors",
+								"2"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Deletar Cor",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "{{URI}}api/colors/1",
+							"host": [
+								"{{URI}}api"
+							],
+							"path": [
+								"colors",
+								"1"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Criar Cor",
+					"protocolProfileBehavior": {
+						"disabledSystemHeaders": {
+							"accept": true
+						}
+					},
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Accept",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"name\": \"Toyota\"\n}\n",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{URI}}api/colors",
+							"host": [
+								"{{URI}}api"
+							],
+							"path": [
+								"colors"
 							]
 						}
 					},
@@ -593,7 +732,7 @@
 						"method": "GET",
 						"header": [],
 						"url": {
-							"raw": "{{URI}}api/vehicles?page=2",
+							"raw": "{{URI}}api/vehicles?page=1",
 							"host": [
 								"{{URI}}api"
 							],
@@ -603,7 +742,7 @@
 							"query": [
 								{
 									"key": "page",
-									"value": "2"
+									"value": "1"
 								}
 							]
 						}
@@ -627,13 +766,13 @@
 							}
 						],
 						"url": {
-							"raw": "{{URI}}api/vehicles/9",
+							"raw": "{{URI}}api/vehicles/1",
 							"host": [
 								"{{URI}}api"
 							],
 							"path": [
 								"vehicles",
-								"9"
+								"1"
 							]
 						}
 					},
