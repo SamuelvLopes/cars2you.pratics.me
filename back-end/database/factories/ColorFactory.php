@@ -9,7 +9,7 @@ class ColorFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->safeColorName, // Gera nomes de cores fictícias
+            'name' => $this->faker->safeColorName, 
         ];
     }
 }
