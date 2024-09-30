@@ -39,6 +39,7 @@ export default {
       }
       return vehicles.value.filter(vehicle =>
         vehicle.brand.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
+        vehicle.status.name.toLowerCase().includes(searchQuery.value.toLowerCase()) ||
         vehicle.model.name.toLowerCase().includes(searchQuery.value.toLowerCase())
       );
     });
@@ -96,7 +97,7 @@ export default {
 
           <div class="list-about">
             <div class="list-item-title">{{ vehicle.brand.name }} {{ vehicle.model.name }} - {{ vehicle.manufacture_year }}</div>
-            <div class="list-item-description">Cor: {{ vehicle.color.name }} | Peso: {{ vehicle.weight }} kg</div>
+            <div class="list-item-description">{{ vehicle.id }} | Cor: {{ vehicle.color.name }} | Peso: {{ vehicle.weight }} kg | Status: {{ vehicle.status.name }}</div>
           </div>
         </div>
       </div>
