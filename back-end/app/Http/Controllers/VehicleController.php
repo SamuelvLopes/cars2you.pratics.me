@@ -16,7 +16,7 @@ class VehicleController extends Controller
         $perPage = $request->query('per_page', 10);
 
         // Retorna todos os veículos com paginação e inclui os relacionamentos
-        $vehicles = Vehicle::with(['brand', 'category', 'model', 'status'])->paginate($perPage);
+        $vehicles = Vehicle::with(['brand', 'category', 'model', 'status', 'color'])->paginate($perPage);
 
         return response()->json($vehicles, 200);
     }
@@ -32,6 +32,7 @@ class VehicleController extends Controller
             'category_id' => 'required|exists:categories,id',
             'model_id' => 'required|exists:vehicle_models,id',
             'status_id' => 'required|exists:status,id',
+            'color_id' => 'required|exists:colors,id',
             'manufacture_year' => 'required|integer|min:1886|max:' . date('Y'), // Ano razoável para veículos
             'weight' => 'required|numeric|min:0',
         ]);
@@ -40,7 +41,7 @@ class VehicleController extends Controller
         $vehicle = Vehicle::create($validatedData);
 
         // Retorna o veículo recém-criado com os relacionamentos
-        $vehicle->load(['brand', 'category', 'model', 'status']);
+        $vehicle->load(['brand', 'category', 'model', 'status', 'color']);
 
         return response()->json($vehicle, 201);
     }
@@ -51,7 +52,7 @@ class VehicleController extends Controller
     public function show($id)
     {
         // Busca o veículo pelo ID e inclui os relacionamentos
-        $vehicle = Vehicle::with(['brand', 'category', 'model', 'status'])->find($id);
+        $vehicle = Vehicle::with(['brand', 'category', 'model', 'status', 'color'])->find($id);
 
         // Verifica se o veículo foi encontrado
         if (!$vehicle) {
@@ -72,6 +73,7 @@ class VehicleController extends Controller
             'category_id' => 'required|exists:categories,id',
             'model_id' => 'required|exists:vehicle_models,id',
             'status_id' => 'required|exists:status,id',
+            'color_id' => 'required|exists:colors,id',
             'manufacture_year' => 'required|integer|min:1886|max:' . date('Y'), // Ano razoável para veículos
             'weight' => 'required|numeric|min:0',
         ]);
@@ -88,7 +90,7 @@ class VehicleController extends Controller
         $vehicle->update($validatedData);
 
         // Retorna o veículo atualizado com os relacionamentos
-        $vehicle->load(['brand', 'category', 'model', 'status']);
+        $vehicle->load(['brand', 'category', 'model', 'status', 'color']);
 
         return response()->json($vehicle, 200);
     }

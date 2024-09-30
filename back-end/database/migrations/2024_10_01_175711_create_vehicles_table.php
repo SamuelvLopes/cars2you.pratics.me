@@ -19,8 +19,9 @@ class CreateVehiclesTable extends Migration
             $table->string('photo')->default('https://via.placeholder.com/150x150');
             $table->timestamps();
             $table->softDeletes();
-            
-            // Chaves estrangeiras
+            $table->unsignedBigInteger('color_id')->nullable();
+
+            $table->foreign('color_id')->references('id')->on('colors')->onDelete('set null');
             $table->foreign('brand_id')->references('id')->on('brands')->onDelete('set null');
             $table->foreign('category_id')->references('id')->on('categories')->onDelete('set null');
             $table->foreign('model_id')->references('id')->on('vehicle_models')->onDelete('set null');

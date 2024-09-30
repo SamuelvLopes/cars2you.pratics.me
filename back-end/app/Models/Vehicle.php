@@ -19,7 +19,11 @@ class Vehicle extends Model
         'weight'
     ];
 
-    
+    public function color()
+    {
+        return $this->belongsTo(Color::class);
+    }
+
     public function brand()
     {
         return $this->belongsTo(Brand::class);

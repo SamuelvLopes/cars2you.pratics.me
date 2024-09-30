@@ -26,3 +26,5 @@ Route::apiResource('models', VehicleModelController::class);
 
 
 Route::apiResource('vehicles', VehicleController::class);
+
+Route::apiResource('colors', ColorController::class);
