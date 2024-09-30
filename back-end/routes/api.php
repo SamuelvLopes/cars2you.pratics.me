@@ -7,6 +7,7 @@ use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\StatusController;
 use App\Http\Controllers\VehicleModelController;
 use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\ColorController;
 
 Route::get('/user', function (Request $request) {
     return $request->user();
